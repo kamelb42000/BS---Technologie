@@ -18,12 +18,11 @@ export const LegalNotice: React.FC = () => (
     <h3 className="text-white text-xl font-bold mt-8 mb-4">1. Édition du site</h3>
     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site internet <strong>bs-technologie.fr</strong> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
     <ul className="list-disc pl-6 text-slate-400 space-y-2 mt-4">
-      <li><strong>Propriétaire du site :</strong> BS-Technologie SAS - Capital social de 50 000€</li>
+      <li><strong>Propriétaire du site :</strong> BS-Technologie SAS - Capital social de 1 000€</li>
       <li><strong>Contact :</strong> Contact@bs-technologie.fr - 06-95-84-76-19</li>
       <li><strong>Adresse :</strong> Saint-Etienne, France</li>
-      <li><strong>Identification de l'entreprise :</strong> SAS BS-Technologie au capital social de 50 000€ - SIREN : 123456789 - RCS Saint-Etienne</li>
+      <li><strong>Identification de l'entreprise :</strong> SAS BS-Technologie au capital social de 1 000€ - RCS Saint-Etienne</li>
       <li><strong>Directeur de la publication :</strong> Direction BS-Technologie</li>
-      <li><strong>Hébergeur :</strong> Vercel Inc. - ou Hébergeur Souverain Français</li>
     </ul>
 
     <h3 className="text-white text-xl font-bold mt-8 mb-4">2. Propriété intellectuelle</h3>
