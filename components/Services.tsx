@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layers, CloudLightning, Lock, BrainCircuit } from 'lucide-react';
 import { Service } from '../types';
+import SEO from '../components/SEO'; // Vérifie le chemin selon ton projet
 
 interface ServicesProps {
   onNavigate: (page: string) => void;
@@ -40,6 +41,12 @@ const services: Service[] = [
 const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
   return (
     <section id="services" className="py-24 relative">
+      {/* SEO */}
+      <SEO
+        title="Solutions et Services BS-Technologie"
+        description="Découvrez les solutions BS-Technologie : SaaS sur-mesure, architecture cloud, sécurité des données et intégration d'IA métier pour propulser votre entreprise."
+      />
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">

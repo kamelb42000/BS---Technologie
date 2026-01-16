@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import About from './components/About';
 import { LegalNotice, PrivacyPolicy, TermsOfService } from './components/Legal';
 import { SaasDevelopment, CloudArchitecture, DataSecurity, TechnicalAudit, ArtificialIntelligence } from './components/SolutionPages';
+import SEO from "./components/SEO";
 
 type Page = 'home' | 'about' | 'legal-notice' | 'privacy' | 'terms' | 'sol-saas' | 'sol-cloud' | 'sol-security' | 'sol-audit' | 'sol-ia';
 
@@ -21,7 +22,6 @@ function App() {
     if (page.startsWith('home#')) {
       const targetId = page.split('#')[1];
       setCurrentPage('home');
-      // Petit délai pour laisser le DOM se mettre à jour si on n'était pas sur home
       setTimeout(() => {
         document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
@@ -32,19 +32,60 @@ function App() {
 
   const renderContent = () => {
     switch (currentPage) {
-      case 'about': return <About />;
-      case 'legal-notice': return <LegalNotice />;
-      case 'privacy': return <PrivacyPolicy />;
-      case 'terms': return <TermsOfService />;
-      case 'sol-saas': return <SaasDevelopment />;
-      case 'sol-cloud': return <CloudArchitecture />;
-      case 'sol-security': return <DataSecurity />;
-      case 'sol-audit': return <TechnicalAudit />;
-      case 'sol-ia': return <ArtificialIntelligence />;
+      case 'about': 
+        return <>
+          <SEO title="À propos – BS-Technologie" pathname="/about" description="Découvrez notre entreprise et notre expertise en développement web et solutions digitales." />
+          <About />
+        </>;
+      case 'legal-notice': 
+        return <>
+          <SEO title="Mentions légales – BS-Technologie" pathname="/legal-notice" />
+          <LegalNotice />
+        </>;
+      case 'privacy': 
+        return <>
+          <SEO title="Politique de confidentialité – BS-Technologie" pathname="/privacy" />
+          <PrivacyPolicy />
+        </>;
+      case 'terms': 
+        return <>
+          <SEO title="Conditions générales – BS-Technologie" pathname="/terms" />
+          <TermsOfService />
+        </>;
+      case 'sol-saas': 
+        return <>
+          <SEO title="Développement SaaS – BS-Technologie" pathname="/sol-saas" />
+          <SaasDevelopment />
+        </>;
+      case 'sol-cloud': 
+        return <>
+          <SEO title="Architecture Cloud – BS-Technologie" pathname="/sol-cloud" />
+          <CloudArchitecture />
+        </>;
+      case 'sol-security': 
+        return <>
+          <SEO title="Sécurité des données – BS-Technologie" pathname="/sol-security" />
+          <DataSecurity />
+        </>;
+      case 'sol-audit': 
+        return <>
+          <SEO title="Audit technique – BS-Technologie" pathname="/sol-audit" />
+          <TechnicalAudit />
+        </>;
+      case 'sol-ia': 
+        return <>
+          <SEO title="Intelligence Artificielle – BS-Technologie" pathname="/sol-ia" />
+          <ArtificialIntelligence />
+        </>;
       case 'home':
       default:
         return (
           <>
+            <SEO 
+              title="Accueil – BS-Technologie" 
+              pathname="/" 
+              description="BS-Technologie : développement web, audits SEO, optimisation des performances et solutions digitales sur mesure." 
+            />
             <Hero onNavigate={handleNavigate} />
             <SocialProof />
             <Services onNavigate={handleNavigate} />

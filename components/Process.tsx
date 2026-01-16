@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, PenTool, Code2, Rocket } from 'lucide-react';
 import { ProcessStep } from '../types';
+import SEO from '../components/SEO'; // Vérifie le chemin selon ton projet
 
 const steps: ProcessStep[] = [
   {
@@ -34,6 +35,12 @@ const icons = [Search, PenTool, Code2, Rocket];
 const Process: React.FC = () => {
   return (
     <section id="process" className="py-24 relative overflow-hidden">
+      {/* SEO */}
+      <SEO 
+        title="Processus de développement BS-Technologie" 
+        description="Découvrez le processus BS-Technologie pour transformer vos idées en logiciels sur-mesure : audit, prototypage, développement agile et déploiement cloud."
+      />
+
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-900/10 to-transparent pointer-events-none"></div>
 

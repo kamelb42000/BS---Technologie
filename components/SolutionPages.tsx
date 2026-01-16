@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layers, CloudLightning, Lock, Activity, CheckCircle, BrainCircuit } from 'lucide-react';
+import SEO from '../components/SEO'; // Vérifie le chemin selon ton projet
 
 const SolutionLayout: React.FC<{
   title: string;
@@ -9,6 +10,7 @@ const SolutionLayout: React.FC<{
   details: React.ReactNode;
 }> = ({ title, subtitle, icon, features, details }) => (
   <div className="pt-24 pb-12 min-h-screen bg-slate-950">
+    <SEO title={title} description={subtitle} />
     <div className="container mx-auto px-6">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8 inline-flex p-4 rounded-2xl bg-slate-900 border border-slate-800">
@@ -39,6 +41,7 @@ const SolutionLayout: React.FC<{
   </div>
 );
 
+// ----- Solutions -----
 export const SaasDevelopment: React.FC = () => (
   <SolutionLayout
     title="Développement SaaS Sur-Mesure"
@@ -49,32 +52,30 @@ export const SaasDevelopment: React.FC = () => (
         <div>
           <h3 className="text-white text-xl font-bold mb-2">La Puissance du Sur-Mesure</h3>
           <p>
-            Nous ne nous contentons pas d'assembler des briques existantes. Contrairement aux solutions "No-Code" ou aux CMS standards qui brident votre croissance, nous codons votre vision sans limites. Si vous voulez une fonctionnalité unique au monde, BS-Technologie la crée pour vous.
+            Nous codons votre vision sans limites. Si vous voulez une fonctionnalité unique au monde, BS-Technologie la crée pour vous.
           </p>
         </div>
-        
         <div>
           <h3 className="text-white text-xl font-bold mb-2">React, Node.js & Rust : La Stack 2026</h3>
           <p>
-            Nous utilisons le standard industriel <strong>React & Node.js</strong> pour une rapidité et une modernité absolues. Couplé à <strong>Rust</strong>, notre arme secrète, nous garantissons une sécurité mémoire infaillible et la capacité de gérer des millions de requêtes sans ralentissement.
+            Rapidité et modernité absolues. Rust assure sécurité mémoire et gestion de millions de requêtes.
           </p>
         </div>
-
         <div>
           <h3 className="text-white text-xl font-bold mb-2">Applications Web Progressives (PWA)</h3>
           <p>
-            Optimisez votre budget. Nous développons une <strong>PWA</strong> unique : votre logiciel fonctionne comme une application native sur Web, iOS et Android. Une seule maintenance, un déploiement universel et une disponibilité même hors-ligne.
+            Votre logiciel fonctionne comme une application native sur Web, iOS et Android.
           </p>
         </div>
       </>
     }
     features={[
-      "Micro-services modulaires : Évolutivité infinie sans casser l'existant.",
-      "UX/UI Futuriste & Accessible : Adoption immédiate par vos équipes.",
-      "API RESTful & GraphQL : Intégration totale à votre écosystème (Banque, CRM).",
-      "Tests automatisés 24/7 : Stabilité maximale, zéro régression.",
-      "Mobile First Native : Performance optimale pour l'usage en mobilité.",
-      "Mises à jour Zero-Downtime : Service disponible 100% du temps."
+      "Micro-services modulaires : Évolutivité infinie",
+      "UX/UI Futuriste & Accessible",
+      "API RESTful & GraphQL",
+      "Tests automatisés 24/7",
+      "Mobile First Native",
+      "Mises à jour Zero-Downtime"
     ]}
   />
 );
@@ -84,7 +85,7 @@ export const CloudArchitecture: React.FC = () => (
     title="Architecture Cloud Scalable"
     subtitle="Une infrastructure qui grandit avec votre ambition."
     icon={<CloudLightning className="w-12 h-12 text-blue-500" />}
-    details="L'infrastructure est la colonne vertébrale de votre logiciel. Nos architectes cloud certifiés conçoivent des environnements Serverless auto-évolutifs. Que vous ayez 10 ou 10 millions d'utilisateurs, votre plateforme reste performante et vos coûts sont optimisés à l'usage réel."
+    details="Nos architectes cloud certifiés conçoivent des environnements Serverless auto-évolutifs pour garantir performance et coûts optimisés."
     features={[
       "Auto-scaling horizontal et vertical",
       "Architecture Serverless (Pay-per-use)",
@@ -101,7 +102,7 @@ export const DataSecurity: React.FC = () => (
     title="Sécurité & Souveraineté"
     subtitle="Vos données sont votre actif le plus précieux. Protégez-les."
     icon={<Lock className="w-12 h-12 text-emerald-500" />}
-    details="Dans un monde cyber-menacé, la sécurité n'est pas une option. BS-Technologie applique le principe de 'Security by Design'. Nous chiffrons les données au repos et en transit, mettons en place une authentification forte (MFA) et garantissons l'hébergement sur le sol français ou européen pour une conformité RGPD totale."
+    details="BS-Technologie applique 'Security by Design' : chiffrement, MFA et hébergement souverain."
     features={[
       "Chiffrement AES-256 de bout en bout",
       "Audit de sécurité continu",
@@ -118,7 +119,7 @@ export const TechnicalAudit: React.FC = () => (
     title="Audit Technique & Conseil"
     subtitle="Comprendre l'existant pour mieux construire le futur."
     icon={<Activity className="w-12 h-12 text-amber-500" />}
-    details="Votre logiciel actuel est lent ? Difficile à maintenir ? Avant de tout refaire, il faut comprendre. Nos experts plongent dans votre code et vos processus pour identifier les dettes techniques, les failles de sécurité et les goulots d'étranglement. Nous vous livrons une feuille de route claire et chiffrée."
+    details="Nos experts analysent code et processus pour identifier dettes techniques et failles de sécurité."
     features={[
       "Analyse de la qualité du code",
       "Tests de pénétration (Pentest)",
@@ -135,7 +136,7 @@ export const ArtificialIntelligence: React.FC = () => (
     title="Intégration d'IA Métier"
     subtitle="L'intelligence artificielle au service de votre productivité."
     icon={<BrainCircuit className="w-12 h-12 text-pink-500" />}
-    details="Transformez vos données brutes en leviers de croissance. Nous intégrons des modèles d'IA sur-mesure (LLM, Prédictif, Vision) directement dans vos flux métiers. Automatisez les tâches répétitives, générez du contenu ou analysez vos données en temps réel avec une confidentialité totale (Modèles Open Source hébergés en privé)."
+    details="Nous intégrons des modèles d'IA sur-mesure (LLM, Prédictif, Vision) pour automatiser vos processus internes."
     features={[
       "Fine-tuning de modèles (Llama 3, Mistral)",
       "RAG (Retrieval Augmented Generation)",

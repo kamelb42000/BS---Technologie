@@ -29,11 +29,11 @@ const WhyCustom: React.FC = () => {
   return (
     <section id="why-custom" className="py-24 bg-slate-900/30">
       <div className="container mx-auto px-6">
-        <div className="mb-16">
+        <div className="mb-16 text-center md:text-left">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Pourquoi choisir le <span className="text-indigo-400">Sur-Mesure</span> ?
           </h2>
-          <p className="text-slate-400 max-w-2xl">
+          <p className="text-slate-400 max-w-2xl mx-auto md:mx-0">
             Les solutions génériques brident votre croissance. BS-Technologie conçoit des actifs numériques qui valorisent votre entreprise.
           </p>
         </div>
@@ -42,7 +42,7 @@ const WhyCustom: React.FC = () => {
           <div className="min-w-[768px] grid grid-cols-3 gap-6">
             {/* Headers */}
             <div className="col-span-1 p-6 flex items-end">
-               <span className="text-sm font-mono text-slate-500 uppercase tracking-widest">Comparatif</span>
+              <span className="text-sm font-mono text-slate-500 uppercase tracking-widest">Comparatif</span>
             </div>
             <div className="col-span-1 p-6 bg-slate-900/50 rounded-t-2xl border-x border-t border-slate-800/50">
               <h3 className="text-xl font-bold text-slate-400">Logiciels Génériques</h3>
