@@ -1,6 +1,6 @@
-// scripts/generate-sitemap.js
-const fs = require('fs');
-const path = require('path');
+// scripts/generate-sitemap.js  (ESM - compatible avec "type": "module")
+import fs from 'fs';
+import path from 'path';
 
 const base = 'https://www.bs-technologie.fr';
 const today = new Date().toISOString().slice(0,10);
@@ -25,6 +25,6 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 ${urls}
 </urlset>`;
 
-const outPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
-fs.writeFileSync(outPath, xml.trim());
+const outPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+fs.writeFileSync(outPath, xml.trim() + '\n', { encoding: 'utf8' });
 console.log('sitemap written to', outPath);
