@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    base: mode === 'production' ? '/BS---Technologie/' : '/',
+    base: '/',
     
     plugins: [react()],
     server: {
@@ -21,6 +21,10 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src')
       }
+    },
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true
     }
   }
 })
