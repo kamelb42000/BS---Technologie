@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    base: mode === 'production' ? '/bs-technologie/' : '/',
+    base: mode === 'production' ? '/BS---Technologie/' : '/',
     
     plugins: [react()],
     server: {
