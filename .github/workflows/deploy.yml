@@ -32,8 +32,10 @@ jobs:
       - name: Build Vite app
         run: npm run build --if-present
 
-      - name: Create .nojekyll file
-        run: touch dist/.nojekyll
+      - name: Create .nojekyll and copy CNAME
+        run: |
+          touch dist/.nojekyll
+          cp CNAME dist/ 2>/dev/null || echo "Pas de CNAME trouvé"
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
