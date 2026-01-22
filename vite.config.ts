@@ -6,20 +6,22 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    base: '/', // INDISPENSABLE pour ton domaine personnalisé
+    base: '/', // Indispensable pour ton domaine www.bs-technologie.fr
     plugins: [react()],
-    define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-    },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.') // Pointe vers la racine
+        // Comme tes fichiers sont à la racine, @ pointe ici
+        '@': path.resolve(__dirname, '.')
       }
     },
     build: {
       outDir: 'dist',
-      emptyOutDir: true
+      // On s'assure que Vite ne cherche pas un dossier src inexistant
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+        },
+      },
     }
   }
 })
