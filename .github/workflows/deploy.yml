@@ -32,6 +32,9 @@ jobs:
       - name: Build Vite app
         run: npm run build --if-present
 
+      - name: Create .nojekyll file
+        run: touch dist/.nojekyll
+
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
