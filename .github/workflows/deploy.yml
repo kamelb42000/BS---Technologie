@@ -9,6 +9,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,10 +30,12 @@ jobs:
         run: npm ci
 
       - name: Build Vite app
-        run: npm run build
+        run: npm run build --if-present
 
-      - name: Copy CNAME to dist
-        run: cp CNAME dist/ || echo "CNAME non trouvé"
+      - name: Create .nojekyll and copy CNAME
+        run: |
+          touch dist/.nojekyll
+          cp CNAME dist/ 2>/dev/null || echo "Pas de CNAME trouvé"
 
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
@@ -42,7 +48,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    # ----------------------------------
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
