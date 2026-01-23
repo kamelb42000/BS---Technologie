@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Send, Mail, Phone, MapPin } from 'lucide-react';
-import SEO from './SEO'; // Assure-toi que le chemin est correct
+import emailjs from '@emailjs/browser';
+import SEO from './SEO';
+import toast, { Toaster } from 'react-hot-toast';
+
+const SERVICE_ID = (import.meta as any)?.env?.VITE_EMAILJS_SERVICE_ID || process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+const TEMPLATE_ID = (import.meta as any)?.env?.VITE_EMAILJS_TEMPLATE_ID || process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const PUBLIC_KEY = (import.meta as any)?.env?.VITE_EMAILJS_PUBLIC_KEY || process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,16 +16,44 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation of form submission
-    alert(`Merci ${formData.name}. Votre demande d'audit a été envoyée à nos experts.`);
-    setFormData({ name: '', email: '', company: '', message: '' });
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Merci de renseigner les champs requis.');
+      return;
+    }
+
+    setSending(true);
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      company: formData.company,
+      message: formData.message,
+      to_email: 'contact@bs-technologie.fr'
+    } as Record<string, string>;
+
+    const toastId = toast.loading('Envoi en cours...');
+
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+      toast.success(`Merci ${formData.name}. Votre demande a bien été envoyée.`, { id: toastId });
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      toast.error('Une erreur est survenue lors de l\'envoi. Merci de réessayer plus tard.', { id: toastId });
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
 
   return (
     <>
@@ -98,6 +132,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
                       placeholder="Jean Dupont"
+                      disabled={sending}
                     />
                   </div>
                   <div className="space-y-2">
@@ -110,6 +145,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
                       placeholder="Votre société"
+                      disabled={sending}
                     />
                   </div>
                 </div>
@@ -125,6 +161,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all"
                     placeholder="jean@entreprise.com"
+                    disabled={sending}
                   />
                 </div>
 
@@ -139,14 +176,16 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-all resize-none"
                     placeholder="Décrivez vos besoins..."
+                    disabled={sending}
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-all duration-300 flex items-center justify-center gap-2"
+                  disabled={sending}
+                  className={`w-full py-4 ${sending ? 'opacity-60 cursor-wait' : ''} bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] transition-all duration-300 flex items-center justify-center gap-2`}
                 >
-                  Envoyer la demande
+                  {sending ? 'Envoi...' : 'Envoyer la demande'}
                   <Send className="w-5 h-5" />
                 </button>
               </form>
