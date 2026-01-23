@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               L'expertise SaaS au service de votre vision. Nous construisons les outils numériques de demain pour les entreprises ambitieuses.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+              <a href="https://www.linkedin.com/company/bs-technologie" target="_blank"rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
               <a href="#" className="text-slate-400 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
               <a href="#" className="text-slate-400 hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
             </div>
